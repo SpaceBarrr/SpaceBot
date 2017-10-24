@@ -26,23 +26,21 @@ async def on_ready():
 @client.command(pass_context=True)
 async def ping(ctx):
 	await client.say("Pong!")
-	print("Ping function ran")
+	print("Ping function ran succesfully")
 
-#takes the random number and "rates" someone out of 10
+#takes the random number and "rates" someone out of 10 (unless its josephine so my bot doesnt get banned xDDDD)
 @client.command(pass_context=True)
 async def ratewaifu(ctx, arg):
 	global x
 	x = random.randint(1, 10)
-	if 
+	
+	if 'josephine' in arg:
+		await client.say(':thinking: Hmm, Id say josephine is a 10!')
+	
+	elif 'cian' in arg:
+		await client.say(':thinking: Hmm, Id say cian is the best motherfucker out!')
 
-	print('Rate waifu args: {0}, Random number: {1}'.format(arg, x))
-	await client.say(':thinking: Hmm, Id say {0} is a {1}'.format(arg, x))
-
-
-	# if josephine in arg
-	# 	await client.say(':thinking: Hmm, Id say Josephine is a 10!')
-	# elif cian in arg
-	# 	await client.say(':thinking: Hmm, Id say Cian is a 10!')
-	# else
+	else: 
+		await client.say(':thinking: Hmm, Id say {0} is a {1}'.format(arg, x))
 
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
