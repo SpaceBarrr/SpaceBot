@@ -28,19 +28,26 @@ async def ping(ctx):
 	await client.say("Pong!")
 	print("Ping function ran succesfully")
 
-#takes the random number and "rates" someone out of 10 (unless its josephine so my bot doesnt get banned xDDDD)
+#takes the random number and "rates" someone out of 10 (with some exceptions)
 @client.command(pass_context=True)
 async def ratewaifu(ctx, arg):
 	global x
 	x = random.randint(1, 10)
 	
+	#makes the input lowercase for processing so all capitalisations are treated equal
+	arg = arg.lower()
+
+	#exception for josephine
 	if 'josephine' in arg:
-		await client.say(':thinking: Hmm, Id say josephine is a 10!')
+		await client.say(":thinking: Hmm, I'd say Josephine is a 10!")
 	
+	#exception for cian
 	elif 'cian' in arg:
-		await client.say(':thinking: Hmm, Id say cian is the best motherfucker out!')
+		await client.say(":thinking: Hmm, I'd say Cian is the best motherfucker out!")
 
 	else: 
-		await client.say(':thinking: Hmm, Id say {0} is a {1}'.format(arg, x))
+		#makes the input capitalised again for output
+		reply = arg.capitalize()
+		await client.say(":thinking: Hmm, I'd say {0} is a {1}".format(reply, x))
 
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
