@@ -30,24 +30,30 @@ async def ping(ctx):
 
 #takes the random number and "rates" someone out of 10 (with some exceptions)
 @client.command(pass_context=True)
-async def ratewaifu(ctx, arg):
+async def rnjesus(ctx, arg):
 	global x
 	x = random.randint(1, 10)
 	
-	#makes the input lowercase for processing so all capitalisations are treated equal
+	#makes the input lowercase for processing so all capitalisations are treated with equal rights
 	arg = arg.lower()
 
 	#exception for josephine
 	if 'josephine' in arg:
-		await client.say(":thinking: Hmm, I'd say Josephine is a 10!")
+		await client.say(":thinking: Hmm, I'd say Josephine is a 10/10")
 	
 	#exception for cian
 	elif 'cian' in arg:
-		await client.say(":thinking: Hmm, I'd say Cian is the best motherfucker out!")
+		await client.say(":thinking: Hmm, I'd say Cian is the best motherfucker out...")
 
 	else: 
 		#makes the input capitalised again for output
 		reply = arg.capitalize()
-		await client.say(":thinking: Hmm, I'd say {0} is a {1}".format(reply, x))
+		await client.say(":thinking: Hmm, I'd say {0} is a {1}/10".format(reply, x))
 
+@client.command(pass_context=True)
+async def lock(ctx):
+	await client.say(":lock: | Channel locked...")
+	await client.edit_channel(channel=255253018314932228, user_limit=1)
+
+#bot token
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
