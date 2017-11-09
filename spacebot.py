@@ -31,8 +31,11 @@ async def on_ready():
 #a ping function to test the bot
 @client.command(pass_context=True)
 async def ping(ctx):
-	await client.say("Pong!")
-	print("Ping function ran succesfully")
+	await client.say('Pong!')
+	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
+	if Spacebar in ctx.author():
+		await client.say('you are the man')
+	print('Ping function ran succesfully')
 
 #takes the random number and "rates" someone out of 10 (with some exceptions)
 @client.command(pass_context=True)
@@ -67,11 +70,11 @@ async def pow(ctx):
 	soldier = discord.utils.get(ctx.message.server.roles,name='USSR Soldier')
 	citizen = discord.utils.get(ctx.message.server.roles,name='USSR Citizen')
 	POW = discord.utils.get(ctx.message.server.roles,name='Prisoner of War')
-	if marshal in message.author.roles:
+	if discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR') in ctx.message.author.roles:
 		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
 		await client.add_roles(ctx.message.mentions[0], POW)
 		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
-	elif general in message.author.roles:
+	elif discord.utils.get(ctx.message.server.roles,name='Marshal of the USSR') in ctx.message.author.roles:
 		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
 		await client.add_roles(ctx.message.mentions[0], POW)
 		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
