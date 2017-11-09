@@ -8,11 +8,12 @@ import os
 #logging to console
 logging.basicConfig(level=logging.ERROR)
 
-#defines client as the bot?
+#defines client as the bot
 client = discord.Client()
 bot_prefix= "$" #prefix before bot commands
 client = commands.Bot(command_prefix=bot_prefix)
 
+#called when the bot is originally loaded
 @client.event
 async def on_ready():
 	#initialisation message in console 
@@ -32,9 +33,6 @@ async def on_ready():
 @client.command(pass_context=True)
 async def ping(ctx):
 	await client.say('Pong!')
-	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
-	if Spacebar in ctx.author():
-		await client.say('you are the man')
 	print('Ping function ran succesfully')
 
 #takes the random number and "rates" someone out of 10 (with some exceptions)
@@ -59,7 +57,7 @@ async def rnjesus(ctx, arg):
 		reply = arg.capitalize()
 		await client.say(":thinking: Hmm, I'd say {0} is a {1}/100".format(reply, x))
 
-#gives the mentioned user POW rank
+#gives the mentioned user POW rank and strips their ranks if the command user has admin
 @client.command(pass_context=True)
 async def pow(ctx):
 	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
