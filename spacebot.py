@@ -59,16 +59,39 @@ async def rnjesus(ctx, arg):
 #gives the mentioned user POW rank
 @client.command(pass_context=True)
 async def pow(ctx):
-    givePOW = discord.utils.get(ctx.message.server.roles,name='Prisoner of War')
-    await client.add_roles(ctx.message.mentions[0], givePOW)
-    await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
+	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
+	marshal = discord.utils.get(ctx.message.server.roles,name='Marshal of the USSR')
+	chief = discord.utils.get(ctx.message.server.roles,name='Chief Marshal')
+	general = discord.utils.get(ctx.message.server.roles,name='General of the Army')
+	cosmonaut = discord.utils.get(ctx.message.server.roles,name='Russian Cosmonaut')
+	soldier = discord.utils.get(ctx.message.server.roles,name='USSR Soldier')
+	citizen = discord.utils.get(ctx.message.server.roles,name='USSR Citizen')
+	POW = discord.utils.get(ctx.message.server.roles,name='Prisoner of War')
+	if marshal in message.author.roles:
+		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
+		await client.add_roles(ctx.message.mentions[0], POW)
+		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
+	elif general in message.author.roles:
+		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
+		await client.add_roles(ctx.message.mentions[0], POW)
+		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
+	else:
+		await client.say("You do not have permission to use this command you fucking pleb")
 
 #'locks' the channel the user is in by setting a limit of 1, so no one without admin can join
 @client.command(pass_context=True)
 async def lock():
-	# channel = discord.utils.get(guild.voice_channels, name='Gulag')
-	# channel = discord.Object(id='255253018314932228')
-	# await client.edit_channel(channel, user_limit=1)
+	#find a guild by name
+	guild = discord.utils.get(client.guilds, name="Joseph Stalin's Soviet Union 1939-1945")
+	#make sure to check if it's found
+	if guild is not None:
+	#find a channel by name
+		channel = discord.utils.get(guild.text_channels, name='Communist Conference Room')
+
+	#channel = discord.utils.get(guild.voice_channels, name='Gulag')
+	#channel = discord.Object(id='255253018314932228')
+	
+	await client.edit_channel(channel, user_limit=1)
 	await client.say(":lock: | Channel locked...")
 
 #bot token
