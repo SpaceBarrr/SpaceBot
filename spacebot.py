@@ -59,7 +59,7 @@ async def rnjesus(ctx, arg):
 
 #gives the mentioned user POW rank and strips their ranks if the command user has admin
 @client.command(pass_context=True)
-async def pow(ctx):
+async def demote(ctx):
 	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
 	marshal = discord.utils.get(ctx.message.server.roles,name='Marshal of the USSR')
 	chief = discord.utils.get(ctx.message.server.roles,name='Chief Marshal')
@@ -71,11 +71,7 @@ async def pow(ctx):
 	if discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR') in ctx.message.author.roles:
 		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
 		await client.add_roles(ctx.message.mentions[0], POW)
-		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
-	elif discord.utils.get(ctx.message.server.roles,name='Marshal of the USSR') in ctx.message.author.roles:
-		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
-		await client.add_roles(ctx.message.mentions[0], POW)
-		await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
+		await client.say("Demoted @{}".format(ctx.message.mentions[0]))
 	else:
 		await client.say("You do not have permission to use this command you fucking pleb")
 
