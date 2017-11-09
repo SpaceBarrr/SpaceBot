@@ -8,7 +8,7 @@ import os
 #logging to console
 logging.basicConfig(level=logging.ERROR)
 
-#defines client as the bot (?)
+#defines client as the bot?
 client = discord.Client()
 bot_prefix= "$" #prefix before bot commands
 client = commands.Bot(command_prefix=bot_prefix)
@@ -21,7 +21,9 @@ async def on_ready():
 	print('Status: Online')
 	print('Name: {}'.format(client.user.name))
 	print('ID: {}'.format(client.user.id))
-	print('Bot Prefix: {}'.format(bot_prefix))
+	print('Command Prefix: {}'.format(bot_prefix))
+	print('View the library docs at discordpy.readthedocs.io/en/rewrite/api.html')
+	print('View the source code at github.com/SpaceBarrr/SpaceBot')
 	print('-----------')
 	#set the bot's current playing game
 	await client.change_presence(game=discord.Game(name='github.com/SpaceBarrr/SpaceBot'))
@@ -54,23 +56,23 @@ async def rnjesus(ctx, arg):
 		reply = arg.capitalize()
 		await client.say(":thinking: Hmm, I'd say {0} is a {1}/100".format(reply, x))
 
-#gives out prisoner of war
+#gives the mentioned user POW rank
 @client.command(pass_context=True)
 async def pow(ctx):
-    giveRole = discord.utils.get(ctx.message.server.roles,name='Prisoner of War')
-    await client.add_roles(ctx.message.mentions[0], giveRole)
+    givePOW = discord.utils.get(ctx.message.server.roles,name='Prisoner of War')
+    await client.add_roles(ctx.message.mentions[0], givePOW)
     await client.say("Given {} Prisoner of War!".format(ctx.message.mentions[0]))
 
-#'locks' the channel the user is in by setting a limit of 1, so no one new can join
+#'locks' the channel the user is in by setting a limit of 1, so no one without admin can join
 @client.command(pass_context=True)
 async def lock():
 	# channel = discord.utils.get(guild.voice_channels, name='Gulag')
-	channel = discord.Object(id='255253018314932228')
-	await client.edit_channel(channel, user_limit=1)
+	# channel = discord.Object(id='255253018314932228')
+	# await client.edit_channel(channel, user_limit=1)
 	await client.say(":lock: | Channel locked...")
 
 #bot token
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
 
-# www.spacebarrr.github.io
-# Licensed under ABNF
+#www.spacebarrr.github.io
+#Licensed under ABNF
