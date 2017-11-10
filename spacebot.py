@@ -33,14 +33,14 @@ async def on_ready():
 @client.command(pass_context=True)
 async def ping(ctx):
 	await client.say('Pong!')
-	print('Ping func ran')
+	print('{} ran ping func'.format(ctx.message.author))
 
 #takes the random number and "rates" someone out of 10 (with some exceptions)
 @client.command(pass_context=True)
 async def rnjesus(ctx, arg):
 	global x
 	x = random.randint(1, 100)
-	print('RNG func ran')
+	print('{} ram RNG func'.format(ctx.message.author))
 	#makes the input lowercase for processing so all capitalisations are treated with equal rights
 	arg = arg.lower()
 
@@ -72,10 +72,10 @@ async def demote(ctx):
 		await client.remove_roles(ctx.message.mentions[0], marshal, chief, general, cosmonaut, soldier, citizen)
 		await client.add_roles(ctx.message.mentions[0], POW)
 		await client.say("Demoted @{}".format(ctx.message.mentions[0]))
-		print('Demote func ran')
+		print('{} ran demote func'.format(ctx.message.author))
 	else:
 		await client.say("You do not have permission to use this command you fucking pleb")
-		print('Demote func failed')
+		print('{} attempted to run demote func'.format(ctx.message.author))
 
 #'locks' the channel the user is in by setting a limit of 1, so no one without admin can join
 @client.command(pass_context=True)
@@ -84,10 +84,10 @@ async def lock():
 	if channel is not None:
 		await client.edit_channel(channel, user_limit=1)
 		await client.say(":lock: | Channel locked...")
-		print('Lock func ran')
+		print('{} ran lock func'.format(ctx.message.author))
 	else:
 		await client.say('Error: You are not in a voice channel')
-		print('Lock func failed')
+		print('{} attempted to run lock func'.format(ctx.message.author))
 
 #bot token
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
