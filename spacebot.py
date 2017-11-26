@@ -32,7 +32,7 @@ async def on_ready():
 	print('View the source code at github.com/SpaceBarrr/SpaceBot')
 	print('-----------')
 	#initialisation message in chat
-	startUp = discord.Embed(title='SpaceBot now online!', description='Command prefix: $', colour=0x57FE01)
+	startUp = discord.Embed(title='SpaceBot now online!', description='Command prefix: $ | $help', colour=0x57FE01)
 	await client.send_message(client.get_channel("366216076012290049"), embed=startUp)
 	#set the bot's current playing game
 	await client.change_presence(game=discord.Game(name='SpaceBot | $help'))
@@ -62,7 +62,7 @@ async def rnjesus(ctx, arg):
 		reply = arg.capitalize()
 		await client.say(":thinking: Hmm, I'd say {} is a {}/100".format(reply, x))
 
-#gives the mentioned user POW rank and strips their ranks if the command user has admin
+#gives the mentioned user POW rank and strips their ranks if the command author has admin
 @client.command(pass_context=True)
 async def demote(ctx):
 	general = discord.utils.get(ctx.message.server.roles,name='General Secretary of USSR')
@@ -123,10 +123,6 @@ async def lock(ctx):
 		await client.say('Error: You are not in a voice channel')
 		print('{}: @{} attempted to run lock func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
 
-#help func
-@client.command(pass_context=True)
-async def help(ctx):
-	await client.say('Available commands are; $magic8, $demote, $lock, $unlock, $ping, $rnjesus, $help')
 #bot token 
 #pleae dont steal this :(
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
