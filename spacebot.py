@@ -1,3 +1,6 @@
+#www.spacebarrr.github.io
+#Licensed under Anyone But Nicholas Franz 2017 (ABNF)
+
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
@@ -34,7 +37,7 @@ async def on_ready():
 	#set the bot's current playing game
 	await client.change_presence(game=discord.Game(name='github.com/SpaceBarrr/SpaceBot'))
 
-#a ping function to test the bot
+#ping function to test the bot
 @client.command(pass_context=True)
 async def ping(ctx):
 	await client.say('Pong!')
@@ -81,32 +84,33 @@ async def demote(ctx):
 		await client.say("You do not have permission to use this command you fucking pleb")
 		print('{}: @{} attempted to run demote func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
 
-#pretty much a magic 8 ball func
+#magic8 ball func
 @client.command(pass_context=True)
-async def should(ctx):
-	global x
-	x = random.randint(1, 10)
-	print('{}: @{} ran should func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
-	if x == 1:
-		await client.say('Yes')
-	elif x == 2:
-		await client.say('The future is cloudy...')
-	elif x == 3:
-		await client.say('Without a doubt')
-	elif x == 4:
-		await client.say('FUCKING HELL YES')
-	elif x == 5:
-		await client.say('NO WAY JOSÉ')
-	elif x == 6:
-		await client.say('idk man??')
-	elif x == 7:
-		await client.say(':thinking: Perhaps...')
-	elif x == 8:
-		await client.say('nah knt')
-	elif x == 9:
-		await client.say('yup')
-	else:
-		await client.say('No')
+async def magic8(ctx, arg):
+	if '' in arg:
+		global x
+		x = random.randint(1, 10)
+		print('{}: @{} ran magic8 func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
+		if x == 1:
+			await client.say('Yes')
+		elif x == 2:
+			await client.say('The future is cloudy...')
+		elif x == 3:
+			await client.say('Without a doubt')
+		elif x == 4:
+			await client.say('FUCKING HELL YES')
+		elif x == 5:
+			await client.say('NO WAY JOSÉ')
+		elif x == 6:
+			await client.say('idk man??')
+		elif x == 7:
+			await client.say(':thinking: Perhaps...')
+		elif x == 8:
+			await client.say('nah knt')
+		elif x == 9:
+			await client.say('yup')
+		else:
+			await client.say('No')
 
 #'locks' the channel the user is in by setting a limit of 1, so no one without admin can join
 @client.command(pass_context=True)
@@ -119,8 +123,6 @@ async def lock(ctx):
 		await client.say('Error: You are not in a voice channel')
 		print('{}: @{} attempted to run lock func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
 
-#bot token (pleae dont steal this :( )
+#bot token 
+#pleae dont steal this :(
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
-
-#www.spacebarrr.github.io
-#Licensed under Anyone But Nicholas Franz 2017 (ABNF)
