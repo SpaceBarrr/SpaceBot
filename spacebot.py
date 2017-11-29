@@ -8,6 +8,7 @@ import random
 import logging
 import os
 from time import localtime, strftime
+import asyncio
 
 #logging to console
 logging.basicConfig(level=logging.ERROR)
@@ -34,8 +35,10 @@ async def on_ready():
 	#initialisation message in chat
 	startUp = discord.Embed(title='SpaceBot now online!', description='Command prefix: $ | $help', colour=0x57FE01)
 	await client.send_message(client.get_channel("366216076012290049"), embed=startUp)
-	#set the bot's current playing game
-	await client.change_presence(game=discord.Game(name='SpaceBot | $help'))
+	#set the bot's current playing game using some shitty loop
+	x = 1
+	while x == 1:
+		await gameStatus()
 
 #ping function to test the bot
 @client.command(pass_context=True)
@@ -45,7 +48,7 @@ async def ping(ctx):
 
 #takes the random number and "rates" someone out of 10 (with some exceptions)
 @client.command(pass_context=True)
-async def rnjesus(ctx, arg):
+async def rate(ctx, arg):
 	global x
 	x = random.randint(1, 100)
 	print('{}: @{} ram RNG func'.format(strftime("%a, %d %b %Y %X", localtime()), ctx.message.author))
@@ -61,6 +64,15 @@ async def rnjesus(ctx, arg):
 		#makes the input capitalised again for output
 		reply = arg.capitalize()
 		await client.say(":thinking: Hmm, I'd say {} is a {}/100".format(reply, x))
+
+#cycles through different currently playing games
+async def gameStatus():
+	await client.change_presence(game=discord.Game(name='SpaceBot'))
+	await asyncio.sleep(15)
+	await client.change_presence(game=discord.Game(name='$help'))
+	await asyncio.sleep(15)
+	await client.change_presence(game=discord.Game(name='github.com/SpaceBarrr/SpaceBot/'))
+	await asyncio.sleep(15)
 
 #gives the mentioned user POW rank and strips their ranks if the command author has admin
 @client.command(pass_context=True)
@@ -126,3 +138,5 @@ async def lock(ctx):
 #bot token 
 #pleae dont steal this :(
 client.run("MzcwMTM0Njc2MTg0MjM2MDM0.DMoiZw.ic9qPvPPBuspCynYaEkYyYf5xAk")
+
+#TODO: Add a beta bot account for testing purposes
