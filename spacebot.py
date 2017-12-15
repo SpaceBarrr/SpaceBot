@@ -9,6 +9,8 @@ import logging
 import os
 from time import localtime, strftime
 import asyncio
+#TODO: Add something to do with requesting the API
+#import requests
 
 #logging to console
 logging.basicConfig(level=logging.ERROR)
